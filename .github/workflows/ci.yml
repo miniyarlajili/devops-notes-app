@@ -66,3 +66,18 @@ jobs:
         run: |
           docker build -t minyarlajili/notes-frontend:latest ./frontend
           docker push minyarlajili/notes-frontend:latest
+          - name: Scan backend image with Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'minyarlajili/notes-backend:latest'
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Scan frontend image with Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'minyarlajili/notes-frontend:latest'
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL,HIGH'
