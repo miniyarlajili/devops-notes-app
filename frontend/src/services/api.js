@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api'
+  baseURL: 'http://192.168.49.2:30500/api'
 });
 export const getNotes = () => API.get('/notes');
 export const createNote = (data) => API.post('/notes', data);
